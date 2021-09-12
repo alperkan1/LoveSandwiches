@@ -25,7 +25,9 @@ def validate_data(values):
     inside the try converts all strins values into intergers .
     Raise the Value error if the strings cannot be converted into a int or if there isnt 6 values.
     """
+    print(values)
     try: 
+        [int(value) for value in values]
         if len(values) != 6:
             raise ValueError(
                 f"expected 6 values required , you provided {len(values)}"
