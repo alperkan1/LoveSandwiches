@@ -110,8 +110,9 @@ def get_last_5_entries_sales():
     columns = []
     for ind in range(1,7):
         column = sales.col_values(ind)
-        columns.append(column)
-        pprint(columns)
+        columns.append(column[-5:])
+       
+return columns
         
 def main():
     """
@@ -122,7 +123,8 @@ def main():
     update_worksheet(sales_data,"sales")
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "surplus")
+    
 
 print("welcome to Love Sandwisches Data Automation")
 #main()
-get_last_5_entries_sales()
+sales _columns = get_last_5_entries_sales()
