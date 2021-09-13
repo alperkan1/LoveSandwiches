@@ -55,7 +55,7 @@ def validate_data(values):
 
     return True
 
-
+'''
 def update_sales_worksheet(data):
     """
     Update sales worksheet, add new row with the list data provided
@@ -64,14 +64,14 @@ def update_sales_worksheet(data):
     sales_worksheet = SHEET.worksheet("sales")
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
-
+'''
 def calculate_surplus_data(sales_row):
-    """
+    '''
     compare sales data and work out the surplus stock per day
     the surplus is the amount of stock left after the sales of the day:
     if minus had to make more sandwisches. 
     if plus had to waste stock
-    """
+    '''
     print("calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
@@ -80,7 +80,7 @@ def calculate_surplus_data(sales_row):
         surplus = int(stock) - sales
         surplus_data.append(surplus)
     return surplus_data
-
+'''
 def update_surplus_worksheet(data):
     """
     Update surplus worksheet, add new row with the list data provided
@@ -89,6 +89,7 @@ def update_surplus_worksheet(data):
     surplus_worksheet = SHEET.worksheet("surplus")
     surplus_worksheet.append_row(data)
     print("Surplus worksheet updated successfully.\n")
+'''
 
 def update_worksheet(data,worksheet):
     print(f"Updating {worksheet} worksheet...\n")
@@ -96,8 +97,22 @@ def update_worksheet(data,worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated sucessfully\n")
 
+def get_last_5_entries_sales():
+    """
+    Will get las 5 days sales recordesfrom the work sheet to calcualte
+    the amount sandwiches needed to make profit.
+    """
 
+    sales = SHEET.worksheet("sales")
+    #column = sales.col_values(3)
+    #print(column)
 
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column)
+        pprint(columns)
+        
 def main():
     """
     main functions calls
@@ -109,4 +124,5 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
 
 print("welcome to Love Sandwisches Data Automation")
-main()
+#main()
+get_last_5_entries_sales()
